@@ -1,11 +1,13 @@
 module.exports = {
 
-	template: '<a v-show="sorttype === \'asc\'" @click="sortData(data)">\
+	template: '<div>\
+	<a v-show="sorttype === \'asc\'" @click="sortData(data)">\
 		{{ label }} <i class="down black icon" :class="icon" v-if="sort === 1"></i>\
 	</a>\
 	<a v-show="sorttype === \'desc\'" @click="sortData(data)">\
 		{{ label }} <i class="up black icon" :class="icon" v-if="sort === 1"></i>\
-	</a>',
+	</a>\
+	</div>',
 
 	props: {
     label: {
