@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/vinayakkulkarni/vuejs-sort.svg?branch=master)](https://travis-ci.org/vinayakkulkarni/vuejs-sort)
 
-# Laravel Vue Semantic-UI Pagination :zap:
+# VueJS Sort :zap:
 + A simple Vue.js sorting wrapper.
 
 + This is [on GitHub](https://github.com/vinayakkulkarni/vuejs-sort)  so let me know if I've b0rked it somewhere, give me a star :star: if you like it :beers:
@@ -31,7 +31,7 @@ import sort from 'vuejs-sort';
 ## :white_check_mark: Example :four_leaf_clover:
 
 ```html
-<sort :data="sortingData" label="Name" icon="chevron" v-on:sort-data="sortData"></pagination>
+<sort :data="sortingData" label="Name" icon="chevron" v-on:sort-data="sortData"></sort>
 ```
 
 ```javascript
@@ -39,7 +39,7 @@ Vue.component('example-component', {
 
 	data() {
 		return {
-			// Our data object that holds the Laravel paginator data
+			// Our data object that holds the Sorting data
 			sortingData: {},
 		}
 	},
