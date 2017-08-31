@@ -1,7 +1,7 @@
 {
   "name": "vuejs-sort",
   "description": "A Simple VueJS sorting. :cake:",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "Vinayak Kulkarni <vinayak.kulkarni@live.com>",
   "private": false,
   "main": "src/index.js",
