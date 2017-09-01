@@ -1,11 +1,11 @@
 module.exports = {
 
 	template: '<div>\
-		<router-link v-if="data.sorttype === \'desc\'" :to="{ name: routeName, query: { sort: data.sort, sorttype: data.sorttype }}" @click.native="sortData(data.sort, data.sorttype)">\
-			{{ label }} <i class="down black icon" :class="icon" v-if="data.sort === this.$route.query.sort"></i>\
+		<router-link v-show="toRoute.query.sorttype === \'desc\'" :to="toRoute" @click.native="sortData(toRoute.query.sort, toRoute.query.sorttype)">\
+			{{ label }} <i class="down black icon" :class="icon" v-if="toRoute.query.sort === this.$route.query.sort"></i>\
 		</router-link>\
-		<router-link v-if="data.sorttype === \'asc\'" :to="{ name: routeName, query: { sort: data.sort, sorttype: data.sorttype }}" @click.native="sortData(data.sort, data.sorttype)">\
-			{{ label }} <i class="up black icon" :class="icon" v-if="data.sort === this.$route.query.sort"></i>\
+		<router-link v-show="toRoute.query.sorttype === \'asc\'" :to="toRoute" @click.native="sortData(toRoute.query.sort, toRoute.query.sorttype)">\
+			{{ label }} <i class="up black icon" :class="icon" v-if="toRoute.query.sort === this.$route.query.sort"></i>\
 		</router-link>\
 	</div>',
 
@@ -20,20 +20,15 @@ module.exports = {
       default: 'chevron',
       required: false
     },
-    routeName:  {
-      type: String,
-      required: true
-    },
-    data: {
+    toRoute: {
     	type: Object,
-			default: function() {
-				return {
-					sort: null,
-					sorttype: null,
-				}
-			},
-			required: true
-		}
+    	default: function() {
+    		return {
+    			name: 'example.index', 
+    			query: { sort: 1, sorttype: 'asc' }
+    		}
+    	}
+    },
   },
 	methods: {
 		sortData(sort, direction) {
