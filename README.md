@@ -31,7 +31,8 @@ import sort from 'vuejs-sort';
 ## :white_check_mark: Example :four_leaf_clover:
 
 ```html
-<sort :data="sortingData" label="Name" icon="chevron" v-on:sort-data="sortData"></sort>
+<sort label="Posts (asc)" icon="chevron" :toRoute="{ name: 'somewhere.index', query: { sort : 1, sorttype: 'asc' }}" @sort-data="sortData" v-if="sorttype === 'desc'"></sort>
+<sort label="Posts (desc)" icon="chevron" :toRoute="{ name: 'somewhere.index', query: { sort : 1, sorttype: 'asc' }}" @sort-data="sortData" v-if="sorttype === 'asc'"></sort>
 ```
 
 ```javascript
@@ -39,29 +40,27 @@ Vue.component('example-component', {
 
 	data() {
 		return {
-			// Our data object that holds the Sorting data
-			sortingData: {},
+			// You could have $route.query.sort or set a custom value as per your backend
+			// sort: Number(this.$route.query.sort),
+			sort: 1,
+			sorttype: 'asc',
 		}
 	},
 
-	created() {
-		// Fetch initial results
-		this.sortData();
-	},
-
 	methods: {
-		// Our method to GET results from a Laravel endpoint
 		sortData(sort, direction) {
-			if (typeof sort === 'undefined') {
-				sort = 1;
-			}
-
+			this.sort = sort;
+			this.sorttype = direction;
+			this.filterData();
+		},
+		// Our method to GET results from a Laravel endpoint
+		filterData() {
 			// Using vue-resource as an example
-			this.$http.get('example/results?sort=' + page + '&direction=' + direction)
+			t.$http.get('/api/v1/posts?sort=' + t.sort + '&sorttype=' + t.sorttype)
 				.then(response => {
-					return response.json();
-				}).then(data => {
-					this.sortingData = data;
+					// do whatever you do with response data
+				}).catch(error => {
+					// do whatever you do with error data
 				});
 		}
 	}
@@ -69,26 +68,19 @@ Vue.component('example-component', {
 });
 ```
 
-### :white_check_mark: :book: Props
+### :white_check_mark: Props :book:
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `data` | Object | An object containing `sort` (you can set this at your backend) & `sorttype` (viz. Direction eg. `'asc'`, `'desc'`) |
 | `icon` | String | (optional) Default is `chevron`; Refer [Semantic-UI Icons](https://semantic-ui.com/elements/icon.html) for specifying which icons you want. |
 | `label` | String | (optional) Is responsible for the label that'll be displayed which will be clickable. |
+| `toRoute` | Object | An object containing `name` (viz. Route Name) & `query` (viz. a object containing `sort` & `sorttype` similar to `$route.query`) |
 
-```javascript
-{
-	sort: 1,
-	sorttype: 'asc',
-}
-```
-
-### :white_check_mark: :ear: Events
+### :white_check_mark: Events :ear:
 
 | Name | Description |
 | --- | --- |
-| `sort-data` | Triggered when a user changes `sort` & `sorttype`.|
+| `sort-data` | Emits `sort` & `sorttype`.|
 
 
 ## NPM :octocat:  
