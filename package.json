@@ -33,6 +33,7 @@
     "karma-spec-reporter": "^0.0.26",
     "phantomjs-prebuilt": "^2.1.14",
     "vue": "^2.2.8",
+    "vue-router": "^2.7.0",
     "watchify": "^3.8.0"
   },
   "license": "MIT",
