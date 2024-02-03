@@ -30,7 +30,7 @@
     "karma-browserify": "^5.1.0",
     "karma-jasmine": "^1.1.0",
     "karma-phantomjs-launcher": "^1.0.2",
-    "karma-spec-reporter": "^0.0.26",
+    "karma-spec-reporter": "^0.0.36",
     "phantomjs-prebuilt": "^2.1.14",
     "vue": "^2.2.8",
     "vue-router": "^2.7.0",
